@@ -21,18 +21,23 @@ public class CameraHelperPlugin extends CordovaPlugin {
 
     @Override
     public boolean execute(String action, JSONArray args, CallbackContext callbackContext) {
-        PluginResult.Status status = PluginResult.Status.OK;
-        String result = "";
-
         if (action.equals("hasFrontCamera")) {
-            this.cordova.getActivity().getApplicationContext().getPackageManager().hasSystemFeature(PackageManager.FEATURE_CAMERA_FRONT);
+            this.hasFrontCamera(callbackContext);
         }
-        else {
-             status = PluginResult.Status.INVALID_ACTION;
-        }
-        
-        callbackContext.sendPluginResult(new PluginResult(status, result));
 
         return true;
+    }
+
+    public synchronized void hasFrontCamera(final CallbackContext callbackContext) {
+        PluginResult result;
+
+        try{
+            result = new PluginResult(PluginResult.Status.OK, this.cordova.getActivity().getApplicationContext().getPackageManager().hasSystemFeature(PackageManager.FEATURE_CAMERA_FRONT));
+        } catch(Exception e){
+            result = new PluginResult(PluginResult.Status.ERROR);
+        }
+
+        result.setKeepCallback(true);
+        callbackContext.sendPluginResult(result);
     }
 }
