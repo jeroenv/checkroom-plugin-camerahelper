@@ -1,0 +1,34 @@
+<?xml version='1.0' encoding='utf-8'?>
+<plugin id="com.checkroom.plugin.camerahelper" version="0.0.1" xmlns="http://apache.org/cordova/ns/plugins/1.0" xmlns:android="http://schemas.android.com/apk/res/android">
+    
+    <name>CameraHelperPlugin</name>
+    
+    <description>Cordova camera helper plugin for iOS and Android</description>
+
+    <license>MIT</license>
+
+    <js-module name="checkroom-plugin-camerahelper" src="www/CameraHelperPlugin.js">
+        <clobbers target="cameraHelperPlugin" />
+    </js-module>
+
+    <!-- android -->
+    <platform name="android">
+        <config-file target="res/xml/config.xml" parent="/*">
+            <feature name="CameraHelperPlugin">
+                <param name="android-package" value="com.checkroom.plugin.camera.CameraHelperPlugin"/>
+            </feature>
+        </config-file>
+        <source-file src="src/android/CameraHelperPlugin.java" target-dir="src/com/checkroom/plugin/camerahelper" />        
+    </platform>
+
+    <!-- ios -->
+    <platform name="ios">
+        <config-file target="config.xml" parent="/*">
+		<feature name="CameraHelperPlugin">
+			<param name="ios-package" value="CameraHelperPlugin"/>
+		</feature>
+        </config-file>
+	    <header-file src="src/ios/CameraHelperPlugin.h" />
+	    <source-file src="src/ios/CameraHelperPlugin.m" />
+    </platform>
+</plugin>
