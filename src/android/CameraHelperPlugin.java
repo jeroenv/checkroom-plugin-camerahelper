@@ -8,6 +8,8 @@
 
 package com.checkroom.plugin.camerahelper;
 
+import org.json.JSONArray;
+
 import android.content.Context;
 import android.content.pm.PackageManager;
 
