@@ -1,5 +1,9 @@
-<?xml version='1.0' encoding='utf-8'?>
-<plugin id="com.checkroom.plugin.camerahelper" version="0.0.1" xmlns="http://apache.org/cordova/ns/plugins/1.0" xmlns:android="http://schemas.android.com/apk/res/android">
+<?xml version='1.0' encoding='UTF-8'?>
+
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0" 
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        id="com.checkroom.plugin.camerahelper" 
+        version="0.0.1">
     
     <name>CameraHelperPlugin</name>
     
@@ -7,26 +11,33 @@
 
     <license>MIT</license>
 
+    <engines>
+        <engine name="cordova-ios" version=">=3.9.2"/>
+        <engine name="cordova-android" version=">=7.0.0"/>
+    </engines>
+
     <js-module name="checkroom-plugin-camerahelper" src="www/CameraHelperPlugin.js">
         <clobbers target="cameraHelperPlugin" />
-    </js-module>
+    </js-module>  
 
     <!-- android -->
     <platform name="android">
-        <config-file target="res/xml/config.xml" parent="/widget">
+        <config-file target="res/xml/config.xml" parent="/*">
             <feature name="CameraHelperPlugin">
                 <param name="android-package" value="com.checkroom.plugin.camerahelper.CameraHelperPlugin"/>
             </feature>
         </config-file>
-        <source-file src="src/android/CameraHelperPlugin.java" target-dir="src/com/checkroom/plugin/camerahelper" />        
+
+         <!-- cordova plugin src files -->
+        <source-file src="src/android/CameraHelperPlugin.java" target-dir="src/com/checkroom/plugin/camerahelper" />
     </platform>
 
     <!-- ios -->
     <platform name="ios">
         <config-file target="config.xml" parent="/*">
-		<feature name="CameraHelperPlugin">
-			<param name="ios-package" value="CameraHelperPlugin"/>
-		</feature>
+    		<feature name="CameraHelperPlugin">
+    			<param name="ios-package" value="CameraHelperPlugin"/>
+    		</feature>
         </config-file>
 	    <header-file src="src/ios/CameraHelperPlugin.h" />
 	    <source-file src="src/ios/CameraHelperPlugin.m" />
